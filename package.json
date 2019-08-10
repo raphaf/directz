@@ -1,0 +1,32 @@
+{
+  "name": "directz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --reporter=progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raphaf/directz.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raphaf/directz/issues"
+  },
+  "homepage": "https://github.com/raphaf/directz#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "sinon": "^7.3.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15",
+    "pluralize": "^7.0.0",
+    "walk": "^2.3.14"
+  }
+}

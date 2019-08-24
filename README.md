@@ -11,7 +11,7 @@ Install
 
 ```bash
 npm init
-npm install express directz cookie-parser
+npm install express cookie-parser directz
 ```
 Create the following folder and file structure inside your project folder:
 ```

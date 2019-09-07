@@ -41,7 +41,7 @@ const cookieParser = require('cookie-parser');
 
 const app = express();
 const port = 3000;
-const dir = process.env.PWD + '/resources';
+const dir = `${process.env.PWD}/services`;
 const createRouter = express.Router; 
 
 app.use(express.json());

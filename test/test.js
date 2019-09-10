@@ -1,7 +1,10 @@
 const chai = require('chai'),
+  chaiHttp = require('chai-http'),
   assert = chai.assert,
   expect = chai.expect,
   should = chai.should();
+
+chai.use(chaiHttp);
 
 const sinon = require('sinon');
 
@@ -219,6 +222,49 @@ describe('connector', function () {
         done();
       })
       .catch(done);
+  });
+
+});
+
+describe('connector', function () {
+
+  const { app, server } = require('./app6/server');
+
+  after(function (done) {
+    server.close(() => done());
+  });
+
+  it('should return response with code 200', function (done) {
+    chai.request(app)
+      .get('/products')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.an('array');
+        done();
+      });
+  });
+
+  it('should return response with code 400', function (done) {
+    chai.request(app)
+      .put('/products/1')
+      .send({ name: 'iPhone XS' })
+      .end((err, res) => {
+        res.should.have.status(400);
+        res.body.should.be.a('object');
+        expect(res.body).to.have.property('code', 'INVALID_TIME_FOR_UPDATE');
+        done();
+      });
+  });
+
+  it('should return response with code 500', function (done) {
+    chai.request(app)
+      .post('/products')
+      .send({ name: 'iPhone XS' })
+      .end((err, res) => {
+        res.should.have.status(500);
+        res.body.should.be.a('object');
+        done();
+      });
   });
 
 });

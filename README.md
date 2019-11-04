@@ -65,3 +65,22 @@ Access your app
 http://localhost:3000/products
 ```
 
+#### Mapping actions to products.js, for instance:
+
+```
+GET /products >>> find
+GET /products/ >>> find
+
+GET /products/:id >>> findOne
+
+POST /products >>> insert
+
+PUT /products/:id >>> update
+PATCH /products/:id >>> update
+
+POST /products >>> save
+PUT /products/:id >>> save
+PATCH /products/:id >>> save
+
+DELETE /products/:id >>> remove
+```

@@ -159,7 +159,7 @@ describe('connector', function () {
     connect({ app, createRouter, dir })
       .then(() => {
         sinon.assert.calledOnce(createRouter);
-        sinon.assert.calledOnce(app.use);
+        sinon.assert.calledTwice(app.use);
         sinon.assert.calledWith(app.use, '/products', router);
         done();
       })
@@ -231,7 +231,8 @@ describe('connector', function () {
   const { app, server } = require('./app6/server');
 
   after(function (done) {
-    server.close(() => done());
+    if (server) server.close(() => done());
+    else done();
   });
 
   it('should return response with code 200', function (done) {
@@ -263,6 +264,17 @@ describe('connector', function () {
       .end((err, res) => {
         res.should.have.status(500);
         res.body.should.be.a('object');
+        expect(res.body).to.have.property('message', 'a is not defined');
+        done();
+      });
+  });
+
+  it('(custom action) should return response with code 200', function (done) {
+    chai.request(app)
+      .get('/products?handler=customFind')
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.an('array');
         done();
       });
   });

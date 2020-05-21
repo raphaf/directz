@@ -13,8 +13,10 @@ app.use(cookieParser());
 
 // create REST routes from your directory and files
 connect({ app, dir, createRouter });
-
-const server = app.listen(port);
+let server;
+if(!module.parent){
+  server = app.listen(port);
+}
 
 module.exports.app = app;
 module.exports.server = server;
